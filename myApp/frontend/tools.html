@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Luma — Wellness Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Luma</h1>
+    <p class="tagline">Your compassionate mental health companion</p>
+    <button id="btnEmergency" class="btn danger">Emergency</button>
+  </header>
+
+  <nav class="main-nav">
+    <a href="index.html" class="nav-link">🏠 Home</a>
+    <a href="chat.html" class="nav-link">💬 Chat</a>
+    <a href="exercises.html" class="nav-link">🧘 Exercises</a>
+    <a href="health.html" class="nav-link">📊 Health</a>
+    <a href="analytics.html" class="nav-link">📈 Analytics</a>
+    <a href="tools.html" class="nav-link active">🛠️ Tools</a>
+  </nav>
+
+  <main class="page-main">
+    <section class="wellness-tools">
+      <h2>Wellness Tools</h2>
+      <p class="section-description">A collection of tools to support your mental wellness journey.</p>
+      
+      <div class="tools-grid">
+        <div class="tool-card">
+          <div class="tool-icon">🧘</div>
+          <h3>Meditation Timer</h3>
+          <p>Set a timer for your meditation practice</p>
+          <button class="btn" onclick="startMeditation()">Start Meditation</button>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">📝</div>
+          <h3>Gratitude Journal</h3>
+          <p>Write down things you're grateful for</p>
+          <button class="btn" onclick="openGratitudeJournal()">Open Journal</button>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">🎵</div>
+          <h3>Mood Music</h3>
+          <p>Listen to calming music for your mood</p>
+          <button class="btn" onclick="playMoodMusic()">Play Music</button>
+        </div>
+        <div class="tool-card">
+          <div class="tool-icon">🌱</div>
+          <h3>Growth Tracker</h3>
+          <p>Track your personal growth journey</p>
+          <button class="btn" onclick="openGrowthTracker()">View Progress</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="community-section">
+      <h3>Community Support</h3>
+      <div class="community-features">
+        <div class="feature-card">
+          <h4>💬 Support Groups</h4>
+          <p>Connect with others going through similar experiences</p>
+        </div>
+        <div class="feature-card">
+          <h4>📚 Resources</h4>
+          <p>Access curated mental health resources and articles</p>
+        </div>
+        <div class="feature-card">
+          <h4>🎯 Goals</h4>
+          <p>Set and track your mental wellness goals</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Luma is NOT medical care. If you're in crisis, use the Emergency button.</small>
+  </footer>
+  <script src="tools.js"></script>
+</body>
+</html>

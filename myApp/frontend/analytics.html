@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Luma — Analytics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Luma</h1>
+    <p class="tagline">Your compassionate mental health companion</p>
+    <button id="btnEmergency" class="btn danger">Emergency</button>
+  </header>
+
+  <nav class="main-nav">
+    <a href="index.html" class="nav-link">🏠 Home</a>
+    <a href="chat.html" class="nav-link">💬 Chat</a>
+    <a href="exercises.html" class="nav-link">🧘 Exercises</a>
+    <a href="health.html" class="nav-link">📊 Health</a>
+    <a href="analytics.html" class="nav-link active">📈 Analytics</a>
+    <a href="tools.html" class="nav-link">🛠️ Tools</a>
+  </nav>
+
+  <main class="page-main">
+    <section class="analytics-dashboard">
+      <h2>Analytics Dashboard</h2>
+      <p class="section-description">Insights into your mental health journey and progress.</p>
+      
+      <div class="cards">
+        <div class="card">
+          <div class="k">Total Chats</div>
+          <div id="kChats" class="v">—</div>
+        </div>
+        <div class="card">
+          <div class="k">Crisis Flags</div>
+          <div id="kCrisis" class="v">—</div>
+        </div>
+        <div class="card">
+          <div class="k">Avg Mood</div>
+          <div id="kMood" class="v">—</div>
+        </div>
+        <div class="card">
+          <div class="k">Health Entries</div>
+          <div id="kHealth" class="v">—</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="achievements-section">
+      <h3>Levels & Achievements</h3>
+      <div id="achievements" class="badge-wrap"></div>
+    </section>
+
+    <section class="feedback-section">
+      <h3>Share Your Feedback</h3>
+      <p>Help us improve Luma by sharing your experience.</p>
+      <form id="feedbackForm" class="feedback-form">
+        <div class="form-row">
+          <label>Rating (1–5) <input type="number" min="1" max="5" id="fRating" required /></label>
+        </div>
+        <div class="form-row">
+          <label>Comment <textarea id="fComment" rows="3" placeholder="What helped? What should be better?"></textarea></label>
+        </div>
+        <button type="submit" class="btn">Submit Feedback</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <small>Luma is NOT medical care. If you're in crisis, use the Emergency button.</small>
+  </footer>
+  <script src="analytics.js"></script>
+</body>
+</html>

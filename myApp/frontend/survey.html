@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Luma — Personal Assessment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .survey-container {
+      min-height: 100vh;
+      padding: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .survey-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .survey-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .survey-subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    .question-card {
+      background: var(--panel);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+    }
+    .question-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .option-card {
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .option-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+    .option-card.selected {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    .option-card.multi-selected {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, var(--accent) 0%, #059669 100%);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    .selection-indicator {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: white;
+      color: var(--accent);
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .option-emoji {
+      font-size: 32px;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .option-text {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .option-description {
+      font-size: 14px;
+      margin-top: 8px;
+      opacity: 0.8;
+    }
+    .survey-navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+    }
+    .btn-secondary {
+      background: var(--muted);
+      color: white;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="survey-container">
+    <div class="survey-header">
+      <h1 class="survey-title">Personal Assessment</h1>
+      <p class="survey-subtitle">Help us understand where you are in life right now so we can provide the best support for you.</p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Question 1: Current Life Situation -->
+    <div class="question-card" id="question1">
+      <h2 class="question-title">At which place in life are you right now? <small>(Select all that apply)</small></h2>
+      <div class="options-grid">
+        <div class="option-card" data-value="depressed" data-theme="depressed">
+          <span class="option-emoji">😔</span>
+          <div class="option-text">Depressed</div>
+          <div class="option-description">Feeling down and hopeless</div>
+        </div>
+        <div class="option-card" data-value="lonely" data-theme="lonely">
+          <span class="option-emoji">😢</span>
+          <div class="option-text">Lonely</div>
+          <div class="option-description">Feeling isolated and disconnected</div>
+        </div>
+        <div class="option-card" data-value="sad" data-theme="sad">
+          <span class="option-emoji">😞</span>
+          <div class="option-text">Sad</div>
+          <div class="option-description">Going through a difficult time</div>
+        </div>
+        <div class="option-card" data-value="betrayed" data-theme="betrayed">
+          <span class="option-emoji">😠</span>
+          <div class="option-text">Betrayed</div>
+          <div class="option-description">Feeling hurt by someone you trusted</div>
+        </div>
+        <div class="option-card" data-value="love" data-theme="love">
+          <span class="option-emoji">💕</span>
+          <div class="option-text">In Love</div>
+          <div class="option-description">Feeling connected and cared for</div>
+        </div>
+        <div class="option-card" data-value="happy" data-theme="happy">
+          <span class="option-emoji">😊</span>
+          <div class="option-text">Happy</div>
+          <div class="option-description">Feeling positive and content</div>
+        </div>
+        <div class="option-card" data-value="anxious" data-theme="anxious">
+          <span class="option-emoji">😰</span>
+          <div class="option-text">Anxious</div>
+          <div class="option-description">Feeling worried and overwhelmed</div>
+        </div>
+        <div class="option-card" data-value="stressed" data-theme="anxious">
+          <span class="option-emoji">😫</span>
+          <div class="option-text">Stressed</div>
+          <div class="option-description">Feeling pressure and tension</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Question 2: Support Needs -->
+    <div class="question-card hidden" id="question2">
+      <h2 class="question-title">What kind of support do you need most right now? <small>(Select all that apply)</small></h2>
+      <div class="options-grid">
+        <div class="option-card" data-value="emotional">
+          <span class="option-emoji">💝</span>
+          <div class="option-text">Emotional Support</div>
+          <div class="option-description">Someone to listen and understand</div>
+        </div>
+        <div class="option-card" data-value="practical">
+          <span class="option-emoji">🛠️</span>
+          <div class="option-text">Practical Help</div>
+          <div class="option-description">Tools and strategies to cope</div>
+        </div>
+        <div class="option-card" data-value="motivation">
+          <span class="option-emoji">💪</span>
+          <div class="option-text">Motivation</div>
+          <div class="option-description">Encouragement and inspiration</div>
+        </div>
+        <div class="option-card" data-value="guidance">
+          <span class="option-emoji">🧭</span>
+          <div class="option-text">Guidance</div>
+          <div class="option-description">Direction and advice</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Question 3: Time Commitment -->
+    <div class="question-card hidden" id="question3">
+      <h2 class="question-title">How much time can you dedicate to self-care daily? <small>(Select all that apply)</small></h2>
+      <div class="options-grid">
+        <div class="option-card" data-value="5min">
+          <span class="option-emoji">⏰</span>
+          <div class="option-text">5 minutes</div>
+          <div class="option-description">Quick breathing exercises</div>
+        </div>
+        <div class="option-card" data-value="15min">
+          <span class="option-emoji">⏱️</span>
+          <div class="option-text">15 minutes</div>
+          <div class="option-description">Short meditation or journaling</div>
+        </div>
+        <div class="option-card" data-value="30min">
+          <span class="option-emoji">⏲️</span>
+          <div class="option-text">30 minutes</div>
+          <div class="option-description">Full wellness routine</div>
+        </div>
+        <div class="option-card" data-value="flexible">
+          <span class="option-emoji">🔄</span>
+          <div class="option-text">Flexible</div>
+          <div class="option-description">Varies day to day</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="survey-navigation">
+      <button class="btn btn-secondary hidden" id="prevBtn">Previous</button>
+      <button class="btn hidden" id="nextBtn">Next</button>
+      <button class="btn hidden" id="completeBtn">Complete Assessment</button>
+    </div>
+  </div>
+
+  <script>
+    let currentQuestion = 1;
+    let totalQuestions = 3;
+    let surveyData = {
+      lifeSituation: [],
+      supportNeeds: [],
+      timeCommitment: []
+    };
+
+    function updateProgress() {
+      const progress = (currentQuestion / totalQuestions) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+    }
+
+    function showQuestion(questionNum) {
+      // Hide all questions
+      document.querySelectorAll('.question-card').forEach(card => {
+        card.classList.add('hidden');
+      });
+      
+      // Show current question
+      document.getElementById(`question${questionNum}`).classList.remove('hidden');
+      
+      // Update navigation buttons
+      document.getElementById('prevBtn').classList.toggle('hidden', questionNum === 1);
+      document.getElementById('nextBtn').classList.toggle('hidden', questionNum === totalQuestions);
+      document.getElementById('completeBtn').classList.toggle('hidden', questionNum !== totalQuestions);
+      
+      updateProgress();
+    }
+
+    function selectOption(optionCard, questionNum) {
+      const value = optionCard.dataset.value;
+      const theme = optionCard.dataset.theme;
+      
+      // Toggle selection
+      if (optionCard.classList.contains('multi-selected')) {
+        // Deselect
+        optionCard.classList.remove('multi-selected');
+        optionCard.classList.remove('selected');
+        
+        // Remove selection indicator
+        const indicator = optionCard.querySelector('.selection-indicator');
+        if (indicator) {
+          indicator.remove();
+        }
+        
+        // Remove from data
+        if (questionNum === 1) {
+          surveyData.lifeSituation = surveyData.lifeSituation.filter(item => item !== value);
+          // Update theme based on remaining selections
+          updateTheme();
+        } else if (questionNum === 2) {
+          surveyData.supportNeeds = surveyData.supportNeeds.filter(item => item !== value);
+        } else if (questionNum === 3) {
+          surveyData.timeCommitment = surveyData.timeCommitment.filter(item => item !== value);
+        }
+      } else {
+        // Select
+        optionCard.classList.add('multi-selected');
+        optionCard.classList.add('selected');
+        
+        // Add selection indicator
+        const indicator = document.createElement('div');
+        indicator.className = 'selection-indicator';
+        indicator.textContent = '✓';
+        optionCard.appendChild(indicator);
+        
+        // Add to data
+        if (questionNum === 1) {
+          surveyData.lifeSituation.push(value);
+          // Apply theme from first selection
+          if (theme && surveyData.lifeSituation.length === 1) {
+            document.body.className = `theme-${theme}`;
+          }
+        } else if (questionNum === 2) {
+          surveyData.supportNeeds.push(value);
+        } else if (questionNum === 3) {
+          surveyData.timeCommitment.push(value);
+        }
+      }
+    }
+
+    function updateTheme() {
+      // If no life situation selected, remove theme
+      if (surveyData.lifeSituation.length === 0) {
+        document.body.className = '';
+        return;
+      }
+      
+      // Use theme from first selected life situation
+      const firstSelection = surveyData.lifeSituation[0];
+      const optionCard = document.querySelector(`[data-value="${firstSelection}"]`);
+      if (optionCard && optionCard.dataset.theme) {
+        document.body.className = `theme-${optionCard.dataset.theme}`;
+      }
+    }
+
+    // Event listeners
+    document.querySelectorAll('.option-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const questionCard = this.closest('.question-card');
+        const questionNum = parseInt(questionCard.id.replace('question', ''));
+        selectOption(this, questionNum);
+      });
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', function() {
+      if (currentQuestion < totalQuestions) {
+        currentQuestion++;
+        showQuestion(currentQuestion);
+      }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', function() {
+      if (currentQuestion > 1) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+      }
+    });
+
+    document.getElementById('completeBtn').addEventListener('click', function() {
+      // Validate that at least one option is selected for each question
+      if (surveyData.lifeSituation.length === 0) {
+        alert('Please select at least one life situation.');
+        return;
+      }
+      if (surveyData.supportNeeds.length === 0) {
+        alert('Please select at least one support need.');
+        return;
+      }
+      if (surveyData.timeCommitment.length === 0) {
+        alert('Please select at least one time commitment option.');
+        return;
+      }
+      
+      // Store survey data
+      localStorage.setItem('mindmate_survey', JSON.stringify(surveyData));
+      
+      // Redirect to main app
+      window.location.href = 'index.html';
+    });
+
+    // Initialize
+    showQuestion(1);
+    
+    // Check if already completed survey
+    if (localStorage.getItem('mindmate_survey')) {
+      const surveyData = JSON.parse(localStorage.getItem('mindmate_survey'));
+      document.body.className = `theme-${surveyData.theme}`;
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

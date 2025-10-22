@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Luma — Welcome</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    }
+    .login-card {
+      background: white;
+      padding: 48px;
+      border-radius: 20px;
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .login-logo {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .login-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .login-subtitle {
+      color: var(--muted);
+      margin-bottom: 32px;
+      font-size: 16px;
+    }
+    .form-group {
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .form-group input {
+      width: 100%;
+      padding: 16px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-size: 16px;
+      transition: all 0.2s ease;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgb(16 185 129 / 0.1);
+    }
+    .login-btn {
+      width: 100%;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .demo-credentials {
+      background: var(--bg);
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .demo-credentials strong {
+      color: var(--text);
+    }
+    .logout-btn {
+      background: var(--danger);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .logout-btn:hover {
+      background: #dc2626;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-logo">🧠</div>
+      <h1 class="login-title">Luma</h1>
+      <p class="login-subtitle">Your compassionate mental health companion</p>
+      <button id="logoutBtn" class="logout-btn" style="display: none; margin-bottom: 20px;">🚪 Logout</button>
+      
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required placeholder="Enter your username">
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required placeholder="Enter your password">
+        </div>
+        
+        <button type="submit" class="btn login-btn">Sign In</button>
+      </form>
+      
+      <div class="demo-credentials">
+        <strong>Demo Credentials:</strong><br>
+        Username: <code>demo</code><br>
+        Password: <code>mindmate2024</code>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    const API = (path) => `http://localhost:8000${path}`;
+    
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      // Simple demo authentication
+      if (username === 'demo' && password === 'mindmate2024') {
+        // Store user session
+        localStorage.setItem('mindmate_user', JSON.stringify({
+          username: username,
+          loginTime: new Date().toISOString()
+        }));
+        
+        // Redirect to survey page
+        window.location.href = 'survey.html';
+      } else {
+        alert('Invalid credentials. Please use the demo credentials provided.');
+      }
+    });
+    
+    // Logout functionality
+    document.getElementById('logoutBtn').onclick = () => {
+      if (confirm('Are you sure you want to logout?')) {
+        // Clear user session
+        localStorage.removeItem('mindmate_user');
+        localStorage.removeItem('mindmate_survey');
+        
+        // Hide logout button and show login form
+        document.getElementById('logoutBtn').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'block';
+        
+        // Show success message
+        alert('You have been logged out successfully.');
+      }
+    };
+    
+    // Check if already logged in
+    if (localStorage.getItem('mindmate_user')) {
+      // Show logout button and hide login form
+      document.getElementById('logoutBtn').style.display = 'block';
+      document.getElementById('loginForm').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
