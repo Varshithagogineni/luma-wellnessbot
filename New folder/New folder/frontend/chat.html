@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Luma — Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Supabase Client Library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header>
+    <h1>Luma</h1>
+    <p class="tagline">Your compassionate mental health companion</p>
+    <div class="header-buttons">
+      <button id="btnEmergency" class="btn danger">Emergency</button>
+      <div class="dropdown">
+        <button id="btnFeedback" class="btn feedback-btn">Feedback</button>
+        <div class="dropdown-content">
+          <div class="feedback-form">
+            <div class="feedback-categories">
+              <label class="category-option">
+                <input type="radio" name="feedbackCategory" value="voice-integration" class="category-radio">
+                <span>Voice Integration</span>
+              </label>
+              <label class="category-option">
+                <input type="radio" name="feedbackCategory" value="chatbot" class="category-radio">
+                <span>Chatbot</span>
+              </label>
+              <label class="category-option">
+                <input type="radio" name="feedbackCategory" value="user-experience" class="category-radio">
+                <span>User Experience</span>
+              </label>
+              <label class="category-option">
+                <input type="radio" name="feedbackCategory" value="tools-interaction" class="category-radio">
+                <span>Tools Interaction</span>
+              </label>
+              <label class="category-option">
+                <input type="radio" name="feedbackCategory" value="analytics-dashboard" class="category-radio">
+                <span>Analytics Dashboard</span>
+              </label>
+              <label class="category-option">
+                <input type="radio" name="feedbackCategory" value="other" class="category-radio">
+                <span>Other Feedback</span>
+              </label>
+            </div>
+            <div class="star-rating">
+              <span class="star" data-rating="1">★</span>
+              <span class="star" data-rating="2">★</span>
+              <span class="star" data-rating="3">★</span>
+              <span class="star" data-rating="4">★</span>
+              <span class="star" data-rating="5">★</span>
+            </div>
+            <input type="text" id="feedbackText" class="feedback-input" placeholder="Type your feedback here...">
+            <button id="submitFeedback" class="btn-submit-feedback">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="main-nav">
+    <a href="index.html" class="nav-link">🏠 Home</a>
+    <a href="chat.html" class="nav-link active">💬 Chat</a>
+    <a href="exercises.html" class="nav-link">🧘 Exercises</a>
+    <a href="health.html" class="nav-link">📊 Health</a>
+    <a href="analytics.html" class="nav-link">📈 Analytics</a>
+    <a href="tools.html" class="nav-link">🛠️ Tools</a>
+    <button id="logoutBtn" class="nav-link logout-btn">🚪 Logout</button>
+  </nav>
+
+  <main class="page-main">
+    <section class="chat-section">
+      <h2>Chat with Your Mental Health Assistant</h2>
+      <p class="section-description">Share what's on your mind. Your AI companion is here to listen and provide supportive guidance.</p>
+      
+      <div id="chatWindow" class="chat-window"></div>
+      <div class="chat-input">
+        <button id="btnMic" title="Voice input">🎤</button>
+        <input id="chatText" type="text" placeholder="Type or speak what's on your mind..." />
+        <button id="btnSend">Send</button>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <h3>Frequently Asked Questions</h3>
+      <div id="faqDynamic"></div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Luma is NOT medical care. If you're in crisis, use the Emergency button.</small>
+  </footer>
+  <script src="supabase-config.js"></script>
+  <script src="chat.js"></script>
+  <script src="chat-guidance.js"></script>
+</body>
+</html>

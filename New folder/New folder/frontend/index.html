@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Luma — Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Luma</h1>
+    <p class="tagline">Your compassionate mental health companion</p>
+    <button id="btnEmergency" class="btn danger">Emergency</button>
+  </header>
+
+  <nav class="main-nav">
+    <a href="index.html" class="nav-link active">🏠 Home</a>
+    <a href="chat.html" class="nav-link">💬 Chat</a>
+    <a href="exercises.html" class="nav-link">🧘 Exercises</a>
+    <a href="health.html" class="nav-link">📊 Health</a>
+    <a href="analytics.html" class="nav-link">📈 Analytics</a>
+    <a href="tools.html" class="nav-link">🛠️ Tools</a>
+    <button id="logoutBtn" class="nav-link logout-btn">🚪 Logout</button>
+  </nav>
+
+  <main class="home-main">
+    <section class="welcome-section">
+      <div class="welcome-content">
+        <h2>Hello, I'm Luma</h2>
+        <p>Your AI companion that listens, understands, and empowers your mental wellness journey.</p>
+      </div>
+      
+      <div class="avatar-container">
+        <div id="panda-animation" class="panda-animation-container"></div>
+      </div>
+      
+      <!-- Quick Access Navigation -->
+      <div class="quick-nav">
+        <a href="chat.html" class="quick-link">💬 Start Chatting</a>
+        <a href="exercises.html" class="quick-link">🧘 Try Exercises</a>
+        <a href="health.html" class="quick-link">📊 Track Health</a>
+        <a href="analytics.html" class="quick-link">📈 View Analytics</a>
+      </div>
+
+      <!-- Auth Buttons Section -->
+      <div class="auth-buttons-section">
+        <button id="loginBtn" class="btn-auth btn-login">🔐 Login</button>
+        <button id="signupBtn" class="btn-auth btn-signup">✨ Sign Up & Customize</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Signup Modal -->
+  <div id="signupModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close-modal">&times;</span>
+      <h2>Create Your Personalized Experience</h2>
+      <p class="modal-subtitle">Set up your account to get a customized experience tailored to your mental wellness needs</p>
+      
+      <form id="createAccountForm" class="account-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Gmail ID</label>
+          <input type="email" id="email" name="email" placeholder="your.email@gmail.com" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Create Password</label>
+          <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+        </div>
+        <button type="submit" class="btn-create-account">Create Account & Customize My Experience</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <small>Luma is NOT medical care. If you're in crisis, use the Emergency button.</small>
+  </footer>
+  <script src="panda-animation.js"></script>
+  <script src="home.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Luma — Exercises</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Luma</h1>
+    <p class="tagline">Your compassionate mental health companion</p>
+    <button id="btnEmergency" class="btn danger">Emergency</button>
+  </header>
+
+  <nav class="main-nav">
+    <a href="index.html" class="nav-link">🏠 Home</a>
+    <a href="chat.html" class="nav-link">💬 Chat</a>
+    <a href="exercises.html" class="nav-link active">🧘 Exercises</a>
+    <a href="health.html" class="nav-link">📊 Health</a>
+    <a href="analytics.html" class="nav-link">📈 Analytics</a>
+    <a href="tools.html" class="nav-link">🛠️ Tools</a>
+    <button id="logoutBtn" class="nav-link logout-btn">🚪 Logout</button>
+  </nav>
+
+  <main class="page-main">
+    <section class="exercises-section">
+      <h2>Personalized Exercise Guidance</h2>
+      <p class="section-description">Based on your recent messages and mood, here are exercises tailored just for you.</p>
+      
+      <div id="exerciseList" class="exercise-list"></div>
+    </section>
+
+    <section class="suggestions-section">
+      <h3>Personalized Tips</h3>
+      <ul id="tipList" class="tip-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <small>Luma is NOT medical care. If you're in crisis, use the Emergency button.</small>
+  </footer>
+  <script src="exercises.js"></script>
+</body>
+</html>
